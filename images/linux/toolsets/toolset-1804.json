@@ -84,10 +84,9 @@
                 "versions": [ "8", "11", "12" ]
             }
         ],
-        "maven": "3.8.6"
+        "maven": "3.8.7"
     },
     "android": {
-        "cmdline-tools": "latest",
         "platform_min_version": "23",
         "build_tools_min_version": "23.0.1",
         "extra_list": [
@@ -123,13 +122,14 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "7.5.0"
+                "9.3.0"
             ],
             "zip_versions": [
                 "3.1.0",
                 "4.4.0",
                 "5.9.0",
-                "6.6.0"
+                "6.6.0",
+                "7.5.0"
             ]
         }
     ],
@@ -159,6 +159,7 @@
             "libmagickwand-dev",
             "libsecret-1-dev",
             "libsqlite3-dev",
+            "libyaml-dev",
             "libtool",
             "libunwind8",
             "libxkbfile-dev",
@@ -219,14 +220,6 @@
         ]
     },
     "brew": [
-        {
-            "name": "gcc@12",
-            "command": "gcc-12"
-        },
-        {
-            "name": "zstd",
-            "command": "zstd"
-        }
     ],
     "docker": {
         "images": [
@@ -264,12 +257,10 @@
     "dotnet": {
         "aptPackages": [
             "dotnet-sdk-3.1",
-            "dotnet-sdk-5.0",
             "dotnet-sdk-6.0"
         ],
         "versions": [
             "3.1",
-            "5.0",
             "6.0"
         ],
         "tools": [
@@ -300,7 +291,8 @@
             "7.3",
             "7.4",
             "8.0",
-            "8.1"
+            "8.1",
+            "8.2"
         ]
     },
     "selenium": {
