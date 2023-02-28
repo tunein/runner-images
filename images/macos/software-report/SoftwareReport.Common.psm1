@@ -158,11 +158,7 @@ function Build-OSInfoSection {
     $fieldsToInclude = @("System Version:", "Kernel Version:")
     $rawSystemInfo = Invoke-Expression "system_profiler SPSoftwareDataType"
     $parsedSystemInfo = $rawSystemInfo | Where-Object { -not ($_ | Select-String -NotMatch $fieldsToInclude) } | ForEach-Object { $_.Trim() }
-    if ($os.IsCatalina) {
-        $parsedSystemInfo[0] -match "System Version: macOS (?<version>\d+\.\d+)" | Out-Null
-    } else {
-        $parsedSystemInfo[0] -match "System Version: macOS (?<version>\d+)" | Out-Null
-    }
+    $parsedSystemInfo[0] -match "System Version: macOS (?<version>\d+)" | Out-Null
     $version = $Matches.Version
     $systemVersion = $parsedSystemInfo[0].Replace($fieldsToInclude[0],"").Trim()
     $kernelVersion = $parsedSystemInfo[1].Replace($fieldsToInclude[1],"").Trim()
@@ -648,4 +644,9 @@ function Get-CodeQLBundleVersions {
 function Get-ColimaVersion {
     $colimaVersion = Run-Command "colima version" | Select-String "colima version" | Take-Part -Part 2
     return $colimaVersion
+}
+
+function Get-PKGConfigVersion {
+    $pkgconfigVersion = Run-Command "pkg-config --version"
+    return $pkgconfigVersion
 }

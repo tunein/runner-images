@@ -43,7 +43,8 @@
             "versions": [
                 "1.17.*",
                 "1.18.*",
-                "1.19.*"
+                "1.19.*",
+                "1.20.*"
             ],
             "default": "1.18.*"
         },
@@ -73,7 +74,7 @@
                 "versions": [ "8", "11", "17" ]
             }
         ],
-        "maven": "3.8.7"
+        "maven": "3.9.0"
     },
     "android": {
         "cmdline-tools": "latest",
@@ -286,7 +287,7 @@
         "binary_name": "selenium-server"
     },
     "node": {
-        "default": "16"
+        "default": "18"
     },
     "node_modules": [
         {
