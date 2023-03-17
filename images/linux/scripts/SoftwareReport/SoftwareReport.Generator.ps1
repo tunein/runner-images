@@ -40,7 +40,7 @@ $languageAndRuntime.AddToolVersionsListInline("Clang", $(Get-ClangToolVersions -
 $languageAndRuntime.AddToolVersionsListInline("Clang-format", $(Get-ClangToolVersions -ToolName "clang-format"), "^\d+")
 $languageAndRuntime.AddToolVersionsListInline("Clang-tidy", $(Get-ClangTidyVersions), "^\d+")
 $languageAndRuntime.AddToolVersion("Dash", $(Get-DashVersion))
-if (Test-IsUbuntu20) {
+if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
     $languageAndRuntime.AddToolVersion("Erlang", $(Get-ErlangVersion))
     $languageAndRuntime.AddToolVersion("Erlang rebar3", $(Get-ErlangRebar3Version))
 }
@@ -88,8 +88,8 @@ if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
 if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
     $projectManagement.AddToolVersion("Lerna", $(Get-LernaVersion))
 }
+$projectManagement.AddToolVersion("Maven", $(Get-MavenVersion))
 if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
-    $projectManagement.AddToolVersion("Maven", $(Get-MavenVersion))
     $projectManagement.AddToolVersion("Sbt", $(Get-SbtVersion))
 }
 
