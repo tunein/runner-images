@@ -2,7 +2,9 @@ Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 Import-Module "$PSScriptRoot/../helpers/Xcode.Helpers.psm1"
 Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
 
-$xcodeVersions = Get-ToolsetValue "xcode.versions"
+$ARCH = arch
+if ($ARCH -ne "arm64") { $ARCH = "x64" }
+$xcodeVersions = Get-ToolsetValue "xcode.$ARCH.versions"
 $defaultXcode = Get-ToolsetValue "xcode.default"
 $latestXcodeVersion = $xcodeVersions | Select-Object -First 1
 $os = Get-OSVersion
@@ -96,12 +98,16 @@ Describe "Xcode simulators" {
             It "No duplicates in devices" -TestCases $testCase {
                 Switch-Xcode -Version $XcodeVersion
                 [array]$devicesList = @(Get-XcodeDevicesList | Where-Object { $_ })
+                Write-Host "Devices for $XcodeVersion"
+                Write-Host ($devicesList -join "`n")
                 Validate-ArrayWithoutDuplicates $devicesList -Because "Found duplicate device simulators"
             }
 
             It "No duplicates in pairs" -TestCases $testCase {
                 Switch-Xcode -Version $XcodeVersion
                 [array]$pairsList = @(Get-XcodePairsList | Where-Object { $_ })
+                Write-Host "Pairs for $XcodeVersion"
+                Write-Host ($pairsList -join "`n")
                 Validate-ArrayWithoutDuplicates $pairsList -Because "Found duplicate pairs simulators"
             }
         }

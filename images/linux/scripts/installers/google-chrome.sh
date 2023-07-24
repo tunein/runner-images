@@ -14,6 +14,12 @@ function GetChromiumRevision {
     URL="https://omahaproxy.appspot.com/deps.json?version=${CHROME_VERSION}"
     REVISION=$(curl -s $URL | jq -r '.chromium_base_position')
 
+    # Temporarily hardcode revision as both requests
+    # for 115.0.5790.102 and 115.0.5790.98 return old incorrect revision
+    if [ $REVISION -eq "1583" ]; then
+       REVISION="1134878"
+    fi
+
     # Some Google Chrome versions are based on Chromium revisions for which a (usually very old) Chromium release with the same number exist. So far this has heppened with 4 digits long Chromium revisions (1060, 1086).
     # Use the previous Chromium release when this happens to avoid downloading and installing very old Chromium releases that would break image build because of incompatibilities.
     # First reported with: https://github.com/actions/runner-images/issues/5256
@@ -59,20 +65,20 @@ rm -f /etc/cron.daily/google-chrome /etc/apt/sources.list.d/google-chrome.list /
 # Parse Google Chrome version
 FULL_CHROME_VERSION=$(google-chrome --product-version)
 CHROME_VERSION=${FULL_CHROME_VERSION%.*}
+echo "Chrome version is $FULL_CHROME_VERSION"
 
-# Determine the latest release of chromedriver
-# Compatibility of Google Chrome and Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/downloads/version-selection
-LATEST_CHROMEDRIVER_VERSION=$(curl -sL "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
+# Determine the download url for chromedriver
+CHROME_VERSIONS_JSON=$(curl -fsSL https://googlechromelabs.github.io/chrome-for-testing/latest-patch-versions-per-build-with-downloads.json)
+CHROMEDRIVER_VERSION=$(echo $CHROME_VERSIONS_JSON | jq -r '.builds["'"$CHROME_VERSION"'"].version')
+CHROMEDRIVER_URL=$(echo $CHROME_VERSIONS_JSON | jq -r '.builds["'"$CHROME_VERSION"'"].downloads.chromedriver[] | select(.platform=="linux64").url')
 
 # Download and unpack the latest release of chromedriver
-echo "Downloading chromedriver v$LATEST_CHROMEDRIVER_VERSION..."
-CHROMEDRIVER_DIR="/usr/local/share/chrome_driver"
-CHROMEDRIVER_BIN="$CHROMEDRIVER_DIR/chromedriver"
-CHROMEDRIVER_URL="https://chromedriver.storage.googleapis.com/$LATEST_CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
+echo "Installing chromedriver version $CHROMEDRIVER_VERSION"
 download_with_retries $CHROMEDRIVER_URL "/tmp" "chromedriver_linux64.zip"
+unzip -qq /tmp/chromedriver_linux64.zip -d /usr/local/share
 
-mkdir -p $CHROMEDRIVER_DIR
-unzip -qq /tmp/chromedriver_linux64.zip -d $CHROMEDRIVER_DIR
+CHROMEDRIVER_DIR="/usr/local/share/chromedriver-linux64"
+CHROMEDRIVER_BIN="$CHROMEDRIVER_DIR/chromedriver"
 chmod +x $CHROMEDRIVER_BIN
 ln -s "$CHROMEDRIVER_BIN" /usr/bin/
 echo "CHROMEWEBDRIVER=$CHROMEDRIVER_DIR" | tee -a /etc/environment
