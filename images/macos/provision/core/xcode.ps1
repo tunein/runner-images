@@ -1,14 +1,13 @@
 $ErrorActionPreference = "Stop"
 
 Import-Module "$env:HOME/image-generation/helpers/Common.Helpers.psm1"
-Import-Module "$env:HOME/image-generation/helpers/Xcode.Installer.psm1"
+Import-Module "$env:HOME/image-generation/helpers/Xcode.Installer.psm1" -DisableNameChecking
 
 # Spaceship Apple ID login fails due to Apple ID prompting to be upgraded to 2FA.
 # https://github.com/fastlane/fastlane/pull/18116
 $env:SPACESHIP_SKIP_2FA_UPGRADE = 1
 
-$ARCH = arch
-if ($ARCH -ne "arm64") { $ARCH = "x64" }
+$ARCH = Get-Architecture
 [Array]$xcodeVersions = Get-ToolsetValue "xcode.$ARCH.versions"
 write-host $xcodeVersions
 $defaultXcode = Get-ToolsetValue "xcode.default"
@@ -19,10 +18,13 @@ Write-Host "Installing Xcode versions..."
 $xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
     $ErrorActionPreference = "Stop"
     Import-Module "$env:HOME/image-generation/helpers/Common.Helpers.psm1"
-    Import-Module "$env:HOME/image-generation/helpers/Xcode.Installer.psm1"
+    Import-Module "$env:HOME/image-generation/helpers/Xcode.Installer.psm1" -DisableNameChecking
 
     Install-XcodeVersion -Version $_.version -LinkTo $_.link
     Confirm-XcodeIntegrity -Version $_.link
+}
+
+$xcodeVersions | ForEach-Object {
     Approve-XcodeLicense -Version $_.link
 }
 
@@ -31,10 +33,15 @@ $xcodeVersions | ForEach-Object {
     Write-Host "Configuring Xcode $($_.link) ..."
     Invoke-XcodeRunFirstLaunch -Version $_.link
 
-    ##if ($_.link.Split(".")[0] -ge 14) {
-    if ($_.link.Split(".")[0] -eq 14) {
+    if ($_.link.Split(".")[0] -ge 14) {
         # Additional simulator runtimes are included by default for Xcode < 14
         Install-AdditionalSimulatorRuntimes -Version $_.link
+    }
+
+    ForEach($runtime in $_.runtimes) {
+        Write-Host "Installing Additional runtimes for Xcode '$runtime' ..."
+        $xcodebuildPath = Get-XcodeToolPath -Version $_.link -ToolName 'xcodebuild'
+        Invoke-ValidateCommand "sudo $xcodebuildPath -downloadPlatform $runtime" | Out-Null
     }
 
 }

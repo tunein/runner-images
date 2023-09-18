@@ -7,7 +7,6 @@
             "platform_version": "20.04",
             "arch": "x64",
             "versions": [
-                "3.6.*",
                 "3.7.*",
                 "3.8.*",
                 "3.9.*",
@@ -24,7 +23,8 @@
                 "3.6",
                 "3.7",
                 "3.8",
-                "3.9"
+                "3.9",
+                "3.10"
             ]
         },
         {
@@ -44,9 +44,9 @@
             "arch": "x64",
             "platform" : "linux",
             "versions": [
-                "1.18.*",
                 "1.19.*",
-                "1.20.*"
+                "1.20.*",
+                "1.21.*"
             ],
             "default": "1.20.*"
         },
@@ -73,21 +73,11 @@
     ],
     "java": {
         "default": "11",
-        "default_vendor": "Temurin-Hotspot",
-        "vendors": [
-            {
-                "name": "Temurin-Hotspot",
-                "versions": [ "8", "11", "17" ]
-            },
-            {
-                "name": "Adopt",
-                "versions": [ "8", "11" ]
-            }
-        ],
+        "versions": [ "8", "11", "17" ],
         "maven": "3.8.8"
     },
     "android": {
-        "cmdline-tools": "latest",
+        "cmdline-tools": "commandlinetools-linux-9477386_latest.zip",
         "platform_min_version": "27",
         "build_tools_min_version": "27.0.0",
         "extra_list": [
@@ -210,6 +200,7 @@
             "parallel",
             "pass",
             "patchelf",
+            "pigz",
             "pollinate",
             "rsync",
             "shellcheck",
@@ -369,5 +360,8 @@
     },
     "pwsh": {
         "version": "7.2"
+    },
+    "aliyunCli": {
+        "version": "3.0.174"
     }
 }

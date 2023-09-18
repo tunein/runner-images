@@ -1,7 +1,7 @@
 packer {
   required_plugins {
     veertu-anka = {
-      version = "= v3.1.0"
+      version = ">= v3.2.0"
       source = "github.com/veertuinc/veertu-anka"
     }
   }
@@ -165,6 +165,7 @@ build {
       "./provision/core/dotnet.sh",
       "./provision/core/python.sh",
       "./provision/core/azcopy.sh",
+      "./provision/core/openssl.sh",
       "./provision/core/ruby.sh",
       "./provision/core/rubygem.sh",
       "./provision/core/git.sh",
@@ -203,7 +204,6 @@ build {
       "./provision/core/stack.sh",
       "./provision/core/cocoapods.sh",
       "./provision/core/android-toolsets.sh",
-      "./provision/core/vsmac.sh",
       "./provision/core/apache.sh",
       "./provision/core/vcpkg.sh",
       "./provision/core/safari.sh",
@@ -245,6 +245,7 @@ build {
   provisioner "shell" {
     scripts = [
       "./provision/configuration/configure-hostname.sh",
+      "./provision/configuration/cleanup-brew.sh",
       "./provision/configuration/finalize-vm.sh"
     ]
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"

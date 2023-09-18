@@ -1,3 +1,4 @@
+Import-Module "$PSScriptRoot/Common.Helpers.psm1"
 Import-Module "$PSScriptRoot/Xcode.Helpers.psm1"
 
 function Install-XcodeVersion {
@@ -86,7 +87,11 @@ function Expand-XcodeXipArchive {
 
     Write-Host "Extracting Xcode from '$xcodeXipPath'"
     Push-Location $DownloadDirectory
-    Invoke-ValidateCommand "xip -x $xcodeXipPath"
+    if(Test-CommandExists 'unxip') {
+        Invoke-ValidateCommand "unxip $xcodeXipPath"
+    } else {
+        Invoke-ValidateCommand "xip -x $xcodeXipPath"
+    }
     Pop-Location
 
     if (Test-Path "$DownloadDirectory/Xcode-beta.app") {
@@ -121,10 +126,17 @@ function Approve-XcodeLicense {
         [string]$Version
     )
 
+    $os = Get-OSVersion
+
     $XcodeRootPath = Get-XcodeRootPath -Version $Version
     Write-Host "Approving Xcode license for '$XcodeRootPath'..."
     $xcodeBuildPath = Get-XcodeToolPath -XcodeRootPath $XcodeRootPath -ToolName "xcodebuild"
-    Invoke-ValidateCommand "sudo $xcodeBuildPath -license accept"
+
+    if ($os.IsVentura -or $os.IsVenturaArm64) {
+        Invoke-ValidateCommand -Command "sudo $xcodeBuildPath -license accept" -Timeout 15
+    } else {
+        Invoke-ValidateCommand -Command "sudo $xcodeBuildPath -license accept"
+    }
 }
 
 function Install-XcodeAdditionalPackages {
@@ -164,7 +176,7 @@ function Install-AdditionalSimulatorRuntimes {
 
     Write-Host "Installing Simulator Runtimes for Xcode $Version ..."
     $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
-    Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms | xcpretty"
+    Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms" | Out-Null
 }
 
 function Build-XcodeSymlinks {

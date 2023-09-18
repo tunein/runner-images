@@ -1,7 +1,7 @@
 packer {
   required_plugins {
     veertu-anka = {
-      version = "= v3.1.0"
+      version = ">= v3.2.0"
       source = "github.com/veertuinc/veertu-anka"
     }
   }
@@ -196,7 +196,6 @@ build {
       "./provision/core/rust.sh",
       "./provision/core/gcc.sh",
       "./provision/core/cocoapods.sh",
-      "./provision/core/vsmac.sh",
       "./provision/core/safari.sh",
       "./provision/core/bicep.sh",
       "./provision/core/codeql-bundle.sh"
@@ -205,6 +204,13 @@ build {
       "API_PAT=${var.github_api_pat}"
     ]
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
+  }
+  provisioner "shell" {
+    scripts = [
+      "./provision/core/toolset.ps1",
+      "./provision/core/configure-toolset.ps1"
+    ]
+    execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} pwsh -f {{ .Path }}"
   }
   provisioner "shell" {
     script = "./provision/core/delete-duplicate-sims.rb"
