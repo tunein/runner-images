@@ -9,13 +9,13 @@ source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/etc-environment.sh
 
-add_filtered_instalaltion_components() {
+add_filtered_installation_components() {
     local minimum_version=$1
     shift
     local tools_array=("$@")
 
     for item in ${tools_array[@]}; do
-        # Take the last argument after spliting string by ';'' and '-''
+        # Take the last argument after splitting string by ';'' and '-''
         item_version=$(echo "${item##*[-;]}")
 
         # Semver 'comparison'. Add item to components array, if item's version is greater than or equal to minimum version
@@ -36,10 +36,10 @@ get_full_ndk_version() {
 ANDROID_ROOT=/usr/local/lib/android
 ANDROID_SDK_ROOT=${ANDROID_ROOT}/sdk
 SDKMANAGER=${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager
-setEtcEnvironmentVariable "ANDROID_SDK_ROOT" "${ANDROID_SDK_ROOT}"
+set_etc_environment_variable "ANDROID_SDK_ROOT" "${ANDROID_SDK_ROOT}"
 
 # ANDROID_HOME is deprecated, but older versions of Gradle rely on it
-setEtcEnvironmentVariable "ANDROID_HOME" "${ANDROID_SDK_ROOT}"
+set_etc_environment_variable "ANDROID_HOME" "${ANDROID_SDK_ROOT}"
 
 # Create android sdk directory
 mkdir -p ${ANDROID_SDK_ROOT}
@@ -87,10 +87,10 @@ ndk_default_full_version=$(get_full_ndk_version $android_ndk_major_default)
 ndk_latest_full_version=$(get_full_ndk_version $android_ndk_major_latest)
 ANDROID_NDK=${ANDROID_SDK_ROOT}/ndk/${ndk_default_full_version}
 # ANDROID_NDK, ANDROID_NDK_HOME, and ANDROID_NDK_ROOT variables should be set as many customer builds depend on them https://github.com/actions/runner-images/issues/5879
-setEtcEnvironmentVariable "ANDROID_NDK" "${ANDROID_NDK}"
-setEtcEnvironmentVariable "ANDROID_NDK_HOME" "${ANDROID_NDK}"
-setEtcEnvironmentVariable "ANDROID_NDK_ROOT" "${ANDROID_NDK}"
-setEtcEnvironmentVariable "ANDROID_NDK_LATEST_HOME" "${ANDROID_SDK_ROOT}/ndk/${ndk_latest_full_version}"
+set_etc_environment_variable "ANDROID_NDK" "${ANDROID_NDK}"
+set_etc_environment_variable "ANDROID_NDK_HOME" "${ANDROID_NDK}"
+set_etc_environment_variable "ANDROID_NDK_ROOT" "${ANDROID_NDK}"
+set_etc_environment_variable "ANDROID_NDK_LATEST_HOME" "${ANDROID_SDK_ROOT}/ndk/${ndk_latest_full_version}"
 
 # Prepare components for installation
 extras=$(get_toolset_value '.android.extra_list[] | "extras;" + .')
@@ -107,18 +107,15 @@ available_platforms=($($SDKMANAGER --list | sed -n '/Available Packages:/,/^$/p'
 all_build_tools=($($SDKMANAGER --list | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
 available_build_tools=$(echo ${all_build_tools[@]//*rc[0-9]/})
 
-add_filtered_instalaltion_components $minimum_platform_version "${available_platforms[@]}"
-add_filtered_instalaltion_components $minimum_build_tool_version "${available_build_tools[@]}"
+add_filtered_installation_components $minimum_platform_version "${available_platforms[@]}"
+add_filtered_installation_components $minimum_build_tool_version "${available_build_tools[@]}"
 
 # Install components
 echo "y" | $SDKMANAGER ${components[@]}
 
-# Old skdmanager from sdk tools doesn't work with Java > 8, set version 8 explicitly
-sed -i "2i export JAVA_HOME=${JAVA_HOME_8_X64}" ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager
-
 # Add required permissions
 chmod -R a+rwx ${ANDROID_SDK_ROOT}
 
-reloadEtcEnvironment
+reload_etc_environment
 
 invoke_tests "Android"
