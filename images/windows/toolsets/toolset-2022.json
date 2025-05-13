@@ -59,7 +59,6 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "16.*",
                 "18.*",
                 "20.*",
                 "22.*"
@@ -71,12 +70,11 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "1.20.*",
-                "1.21.*",
                 "1.22.*",
-                "1.23.*"
+                "1.23.*",
+                "1.24.*"
             ],
-            "default": "1.21.*"
+            "default": "1.24.*"
         }
     ],
     "powershellModules": [
@@ -295,12 +293,12 @@
     },
     "serviceFabric": {
         "runtime": {
-            "version": "9.1.1436.9590",
-            "checksum": "089F9BE6A63AF66C337E507B52082575C8ED330DF765259C6F2F13F900DA96D5"
+            "version": "10.1.2493.9590",
+            "checksum": "09C63A971BACDE338282C73B3C9174BED9AAD53E1D3A1B73D44515852C9C00CF"
         },
         "sdk": {
-            "version": "6.1.1436",
-            "checksum": "D2A6B58315D08B6E46C2D25E91DFA1163136F70A5FA8CEF9DB147F07EE001AD1"
+            "version": "7.1.2493",
+            "checksum": "0CB1084156C75CF5075EA91ABA330CF10B58648B8E036C9C2F286805263C497F"
         }
     },
     "dotnet": {
@@ -337,6 +335,7 @@
             },
             {
                 "name": "cmake.install",
+                "version": "3.31.6",
                 "args": [ "--installargs", "ADD_CMAKE_TO_PATH=\"System\"" ]
             },
             { "name": "imagemagick" },
@@ -351,7 +350,7 @@
     },
     "mysql": {
         "version": "8.0",
-        "signature": "DD34D7C71F160972DE0CE25B695A0D6A9C95BD91"
+        "signature": "E8A8C17382A6DE62A3B443565E4A96843F834656"
     },
     "mongodb": {
         "version": "5.0",
@@ -373,7 +372,12 @@
         "installVcRedist": true
     },
     "kotlin": {
-        "version": "latest"
+        "version": "2.1.10",
+        "pinnedDetails": {
+            "link": "https://youtrack.jetbrains.com/issues/KT?preview=KT-76169",
+            "reason": "this was pinned due to a new version 2.1.20 released has an issue with kotlinc-js -version` and kapt -version",
+            "review-at": "2025-03-31"
+        }
     },
     "openssl": {
         "version": "1.1.1",
