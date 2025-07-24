@@ -1,13 +1,11 @@
 | Announcements |
 |-|
-| [[Windows, Ubuntu, MacOS] CodeQL bundle will contain only platform-specific binaries on 2025-06-30](https://github.com/actions/runner-images/issues/12453) |
-| [[Windows, Ubuntu, MacOS] Breaking change: Updating  Azure PowerShell Module version as 12.5.x   from  2025-07-04](https://github.com/actions/runner-images/issues/12333) |
 | [[Windows & Ubuntu] .NET 6 will be removed from the images on  2025-08-01.](https://github.com/actions/runner-images/issues/12241) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
-- Kernel Version: 6.8.0-1030-azure
-- Image Version: 20250629.1.0
+- Kernel Version: 6.8.0-1031-azure
+- Image Version: 20250720.1.0
 - Systemd version: 249.11-0ubuntu3.16
 
 ## Installed Software
@@ -20,11 +18,11 @@
 - Dash 0.5.11+git20210903+057cd650a4ed-3build1
 - GNU C++: 10.5.0, 11.4.0, 12.3.0
 - GNU Fortran: 10.5.0, 11.4.0, 12.3.0
-- Julia 1.11.5
-- Kotlin 2.1.10-release-473
+- Julia 1.11.6
+- Kotlin 2.2.0-release-294
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
-- Node.js 20.19.3
+- Node.js 20.19.4
 - Perl 5.34.0
 - Python 3.10.12
 - Ruby 3.0.2p107
@@ -32,8 +30,8 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.18.3
-- Homebrew 4.5.8
+- Helm 3.18.4
+- Homebrew 4.5.10
 - Miniconda 25.5.1
 - Npm 10.8.2
 - NuGet 6.6.1.2
@@ -41,7 +39,7 @@
 - Pip3 22.0.2
 - Pipx 1.7.1
 - RubyGems 3.3.5
-- Vcpkg (build from commit 0cb95c860e)
+- Vcpkg (build from commit 7ffcbfcc40)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -60,40 +58,40 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.12
-- Gradle 8.14.2
+- Gradle 8.14.3
 - Lerna 8.2.3
-- Maven 3.9.10
-- Sbt 1.11.2
+- Maven 3.9.11
+- Sbt 1.11.3
 
 ### Tools
-- Ansible 2.17.12
+- Ansible 2.17.13
 - apt-fast 1.10.0
 - AzCopy 10.29.1 - available by `azcopy` and `azcopy10` aliases
-- Bazel 8.3.0
+- Bazel 8.3.1
 - Bazelisk 1.26.0
-- Bicep 0.36.1
+- Bicep 0.36.177
 - Buildah 1.23.1
 - CMake 3.31.6
 - CodeQL Action Bundle 2.22.1
-- Docker Amazon ECR Credential Helper 0.10.0
+- Docker Amazon ECR Credential Helper 0.10.1
 - Docker Compose v2 2.36.2
 - Docker-Buildx 0.25.0
 - Docker Client 28.0.4
 - Docker Server 28.0.4
 - Fastlane 2.228.0
-- Git 2.49.0
+- Git 2.50.1
 - Git LFS 3.7.0
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 10.11.0
+- Heroku 10.12.0
 - jq 1.6
 - Kind 0.29.0
-- Kubectl 1.33.2
+- Kubectl 1.33.3
 - Kustomize 5.7.0
 - Leiningen 2.11.2
 - MediaInfo 21.09
 - Mercurial 6.1.1
-- Minikube 1.34.0
+- Minikube 1.36.0
 - n 10.2.0
 - Newman 6.2.1
 - nvm 0.40.3
@@ -101,42 +99,42 @@ to accomplish this.
 - Packer 1.13.1
 - Parcel 2.15.4
 - Podman 3.4.4
-- Pulumi 3.181.0
+- Pulumi 3.184.0
 - R 4.5.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
 - Terraform 1.12.2
 - yamllint 1.37.1
-- yq 4.45.4
+- yq 4.46.1
 - zstd 1.5.7
-- Ninja 1.13.0
+- Ninja 1.13.1
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.286
-- AWS CLI 2.27.45
+- Alibaba Cloud CLI 3.0.290
+- AWS CLI 2.27.55
 - AWS CLI Session Manager Plugin 1.2.707.0
-- AWS SAM CLI 1.141.0
-- Azure CLI 2.74.0
+- AWS SAM CLI 1.142.1
+- Azure CLI 2.75.0
 - Azure CLI (azure-devops) 1.0.2
-- GitHub CLI 2.74.2
-- Google Cloud CLI 528.0.0
-- Netlify CLI 22.2.1
-- OpenShift CLI 4.19.1
+- GitHub CLI 2.76.0
+- Google Cloud CLI 530.0.0
+- Netlify CLI 22.3.0
+- OpenShift CLI 4.19.4
 - ORAS CLI 1.2.3
-- Vercel CLI 44.2.7
+- Vercel CLI 44.5.0
 
 ### Java
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
 | 8.0.452+9           | JAVA_HOME_8_X64      |
-| 11.0.27+6 (default) | JAVA_HOME_11_X64     |
-| 17.0.15+6           | JAVA_HOME_17_X64     |
-| 21.0.7+6            | JAVA_HOME_21_X64     |
+| 11.0.28+6 (default) | JAVA_HOME_11_X64     |
+| 17.0.16+8           | JAVA_HOME_17_X64     |
+| 21.0.8+9            | JAVA_HOME_21_X64     |
 
 ### PHP Tools
 - PHP: 8.1.2
-- Composer 2.8.9
+- Composer 2.8.10
 - PHPUnit 8.5.42
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -163,13 +161,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 138.0.7204.49
-- ChromeDriver 138.0.7204.49
+- Google Chrome 138.0.7204.157
+- ChromeDriver 138.0.7204.157
 - Chromium 138.0.7204.0
-- Microsoft Edge 138.0.3351.55
-- Microsoft Edge WebDriver 138.0.3351.55
+- Microsoft Edge 138.0.3351.95
+- Microsoft Edge WebDriver 138.0.3351.95
 - Selenium server 4.34.0
-- Mozilla Firefox 140.0
+- Mozilla Firefox 140.0.4
 - Geckodriver 0.36.0
 
 #### Environment variables
@@ -181,7 +179,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 6.0.428, 8.0.411, 9.0.203
+- .NET Core SDK: 6.0.428, 8.0.412, 9.0.203
 - nbgv 3.7.115+d31f50f4d1
 
 ### Databases
@@ -196,7 +194,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.42-0ubuntu0.22.04.1
+- MySQL 8.0.42-0ubuntu0.22.04.2
 ```
 User: root
 Password: root
@@ -212,13 +210,13 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.22.12
-- 1.23.10
-- 1.24.4
+- 1.23.11
+- 1.24.5
 
 #### Node.js
 - 18.20.8
-- 20.19.3
-- 22.17.0
+- 20.19.4
+- 22.17.1
 
 #### Python
 - 3.9.23
@@ -244,7 +242,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 12.5.0
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.28.0
+- Microsoft.Graph: 2.29.1
 - Pester: 5.7.1
 - PSScriptAnalyzer: 1.24.0
 
@@ -265,16 +263,16 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | CMake                      | 3.18.1<br>3.22.1<br>3.31.5                                                                                                                                                                                                                                                                                                                                    |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                                                            |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                                                                                            |
-| NDK                        | 26.3.11579264<br>27.2.12479018 (default)                                                                                                                                                                                                                                                                                                                      |
+| NDK                        | 26.3.11579264<br>27.3.13750724 (default)                                                                                                                                                                                                                                                                                                                      |
 
 #### Environment variables
 | Name                    | Value                                        |
 | ----------------------- | -------------------------------------------- |
 | ANDROID_HOME            | /usr/local/lib/android/sdk                   |
-| ANDROID_NDK             | /usr/local/lib/android/sdk/ndk/27.2.12479018 |
-| ANDROID_NDK_HOME        | /usr/local/lib/android/sdk/ndk/27.2.12479018 |
-| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/27.2.12479018 |
-| ANDROID_NDK_ROOT        | /usr/local/lib/android/sdk/ndk/27.2.12479018 |
+| ANDROID_NDK             | /usr/local/lib/android/sdk/ndk/27.3.13750724 |
+| ANDROID_NDK_HOME        | /usr/local/lib/android/sdk/ndk/27.3.13750724 |
+| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/27.3.13750724 |
+| ANDROID_NDK_ROOT        | /usr/local/lib/android/sdk/ndk/27.3.13750724 |
 | ANDROID_SDK_ROOT        | /usr/local/lib/android/sdk                   |
 
 ### Cached Docker images
@@ -283,18 +281,18 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.16          | sha256:452e7292acee0ee16c332324d7de05fa2c99f9994ecc9f0779c602916a672ae4  | 2024-01-27 |
 | alpine:3.17          | sha256:8fc3dacfb6d69da8d44e42390de777e48577085db99aa4e4af35f483eb08b989  | 2024-09-06 |
 | alpine:3.18          | sha256:de0eb0b3f2a47ba1eb89389859a9bd88b28e82f5826b6969ad604979713c2d4f  | 2025-02-14 |
-| alpine:3.19          | sha256:e5d0aea7f7d2954678a9a6269ca2d06e06591881161961ea59e974dff3f12377  | 2025-02-14 |
+| alpine:3.19          | sha256:3be987e6cde1d07e873c012bf6cfe941e6e85d16ca5fc5b8bedc675451d2de67  | 2025-07-15 |
 | debian:10            | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
-| debian:11            | sha256:0d3279ff38fb2024358b2f24fbb99122f9a9a40618bb526b614527e998bcda28  | 2025-06-10 |
-| moby/buildkit:latest | sha256:dbc2dfd9342fd5c891ea94e9774c15cab985681e5ff995a9e366066aa0b9b2b4  | 2025-06-20 |
+| debian:11            | sha256:6d4f6b40afca63b59a44ffcedbb2e457e83b645710916d7f094b79c6c591ac28  | 2025-06-30 |
+| moby/buildkit:latest | sha256:ddd1ca44b21eda906e81ab14a3d467fa6c39cd73b9a39df1196210edcb8db59e  | 2025-07-01 |
 | node:18              | sha256:c6ae79e38498325db67193d391e6ec1d224d96c693a8a4d943498556716d3783  | 2025-03-27 |
 | node:18-alpine       | sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e  | 2025-03-27 |
-| node:20              | sha256:6a4de97365bb291992222c4f27cafc338773989712259e809632a873ff45a6ff  | 2025-06-23 |
-| node:20-alpine       | sha256:674181320f4f94582c6182eaa151bf92c6744d478be0f1d12db804b7d59b2d11  | 2025-06-23 |
-| node:22              | sha256:0c0734eb7051babbb3e95cd74e684f940552b31472152edf0bb23e54ab44a0d7  | 2025-06-25 |
-| node:22-alpine       | sha256:5340cbfc2df14331ab021555fdd9f83f072ce811488e705b0e736b11adeec4bb  | 2025-06-25 |
+| node:20              | sha256:a6c4ae2f61d3807514fc4b152b5b37810c70e836303d361d9f84d3842534d666  | 2025-07-15 |
+| node:20-alpine       | sha256:df02558528d3d3d0d621f112e232611aecfee7cbc654f6b375765f72bb262799  | 2025-07-15 |
+| node:22              | sha256:9e6918e8e32a47a58ed5fb9bd235bbc1d18a8c272e37f15d502b9db9e36821ee  | 2025-07-16 |
+| node:22-alpine       | sha256:5539840ce9d013fa13e3b9814c9353024be7ac75aca5db6d039504a56c04ea59  | 2025-07-16 |
 | ubuntu:20.04         | sha256:8feb4d8ca5354def3d8fce243717141ce31e2c428701f6682bd2fafe15388214  | 2025-04-08 |
-| ubuntu:22.04         | sha256:01a3ee0b5e413cefaaffc6abe68c9c37879ae3cced56a8e088b1649e5b269eee  | 2025-05-30 |
+| ubuntu:22.04         | sha256:1ec65b2719518e27d4d25f104d93f9fac60dc437f81452302406825c46fcc9cb  | 2025-07-14 |
 
 ### Installed apt packages
 | Name                   | Version                             |
@@ -321,7 +319,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | ftp                    | 20210827-4build1                    |
 | g++                    | 4:11.2.0-1ubuntu1                   |
 | gcc                    | 4:11.2.0-1ubuntu1                   |
-| gnupg2                 | 2.2.27-3ubuntu2.3                   |
+| gnupg2                 | 2.2.27-3ubuntu2.4                   |
 | haveged                | 1.9.14-1ubuntu1                     |
 | imagemagick            | 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.5 |
 | iproute2               | 5.15.0-1ubuntu2                     |
@@ -373,7 +371,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | ssh                    | 1:8.9p1-3ubuntu0.13                 |
 | sshpass                | 1.09-1                              |
 | subversion             | 1.14.1-3ubuntu0.22.04.1             |
-| sudo                   | 1.9.9-1ubuntu2.4                    |
+| sudo                   | 1.9.9-1ubuntu2.5                    |
 | swig                   | 4.0.2-1ubuntu1                      |
 | systemd-coredump       | 249.11-0ubuntu3.16                  |
 | tar                    | 1.34+dfsg-1ubuntu0.1.22.04.2        |
