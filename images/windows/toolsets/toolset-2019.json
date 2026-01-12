@@ -94,8 +94,6 @@
             "name": "az",
             "versions": [
                 "12.5.0"
-            ],
-            "zip_versions": [
             ]
         }
     ],
@@ -314,12 +312,12 @@
             "Component.MDD.Linux.GCC.arm"
         ],
         "vsix": [
-            "ProBITools.MicrosoftAnalysisServicesModelingProjects",
-            "SSIS.SqlServerIntegrationServicesProjects",
             "ProBITools.MicrosoftReportProjectsforVisualStudio",
             "VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects",
             "ms-biztalk.BizTalk",
-            "WixToolset.WixToolsetVisualStudio2019Extension"
+            "WixToolset.WixToolsetVisualStudio2019Extension",
+            "ProBITools.MicrosoftAnalysisServicesModelingProjects",
+            "SSIS.SqlServerIntegrationServicesProjects"
         ]
     },
     "docker": {
