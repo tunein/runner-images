@@ -8,7 +8,7 @@
                     "filename": "Xcode_26.5_Release_Candidate_Universal",
                     "version": "26.5+17F42",
                     "symlinks": ["26.5"],
-                    "sha256": "4e08f652cf56fe32d209f55d64f1ec71c20c8acfeb92898a21215ca71e17ff7d",
+                    "sha256": "49541f9381551936bd5ab95432337eb1040505edcf5c65a59f39e5cf95fc22c5",
                     "install_runtimes": "none"
                 },
                 {
@@ -62,7 +62,7 @@
                     "filename": "Xcode_26.5_Release_Candidate_Universal",
                     "version": "26.5+17F42",
                     "symlinks": ["26.5"],
-                    "sha256": "4e08f652cf56fe32d209f55d64f1ec71c20c8acfeb92898a21215ca71e17ff7d",
+                    "sha256": "49541f9381551936bd5ab95432337eb1040505edcf5c65a59f39e5cf95fc22c5",
                     "install_runtimes": "none"
                 },
                 {
