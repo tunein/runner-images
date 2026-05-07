@@ -1,6 +1,6 @@
 | Announcements |
 |-|
-| [Windows Server 2025 with Visual Studio 2026 is now available as a public beta](https://github.com/actions/runner-images/issues/13638) |
+| [Windows Server 2025 Image will transition to Visual Studio 2026 starting June 8, 2026](https://github.com/actions/runner-images/issues?q=is%3Aissue+is%3Aopen+label%3AAnnouncement+%22Windows+Server+2025+Image+will+transition+to+Visual+Studio+2026+starting+June+8%2C+2026%22) |
 | [[Windows/Ubuntu] Docker Server and Client will be updated to version 29.1.*, Docker Compose will be updated to version 2.40.3 on February 9th, 2026](https://github.com/actions/runner-images/issues/13474) |
 ***
 # Windows Server 2025
@@ -488,4 +488,3 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\29.0.14206865 |
 | ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\27.3.13750724 |
 | ANDROID_SDK_ROOT        | C:\Android\android-sdk                   |
-
