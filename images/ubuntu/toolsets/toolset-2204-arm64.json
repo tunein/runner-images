@@ -93,7 +93,7 @@
     "powershellModules": [
         {"name": "MarkdownPS"},
         {"name": "Microsoft.Graph"},
-        {"name": "Pester"},
+        {"name": "Pester", "versions": ["5.9.0"]},
         {"name": "PSScriptAnalyzer"}
     ],
     "azureModules": [
@@ -148,6 +148,7 @@
             "libxkbfile-dev",
             "libxss1",
             "libssl-dev",
+            "libicu-dev",
             "locales",
             "mercurial",
             "openssh-client",
@@ -348,6 +349,6 @@
         }
     },
     "pwsh": {
-        "version": "7.4"
+        "version": "7.6"
     }
 }
