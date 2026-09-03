@@ -12,6 +12,8 @@ for package in $common_packages; do
     case "$package" in
         packer)
             # Packer has been deprecated in Homebrew. Use tap to install Packer.
+            brew tap hashicorp/tap
+            brew trust hashicorp/tap
             brew install hashicorp/tap/packer
             ;;
 
@@ -40,6 +42,29 @@ for package in $common_packages; do
             fi
             ;;
 
+        gnu-tar)
+            if ! is_Arm64; then
+                # For the Intel images gnu-tar stopped to work, using pinned commit
+                COMMIT=f80d41dc9db047924348b69d03f398e9e8b19598
+                FILE_NAME="g/gnu-tar.rb"
+                FORMULA_NAME="gnu-tar"
+                brew_install_pinned_formula "$FORMULA_NAME" "$FILE_NAME" "$COMMIT"
+            else
+                brew_smart_install "$package"
+            fi
+            ;;
+
+        swiftformat)
+            if ! is_Arm64; then
+                COMMIT=cb845e90e905cb254daaf82a721ac972c3307b03
+                FILE_NAME="s/swiftformat.rb"
+                FORMULA_NAME="swiftformat"
+                brew_install_pinned_formula "$FORMULA_NAME" "$FILE_NAME" "$COMMIT"
+            else
+                brew_smart_install "$package"
+            fi
+            ;;
+
         # Default behaviour for all other packages
         *)
             brew_smart_install "$package"
@@ -53,7 +78,15 @@ for package in $cask_packages; do
     if is_Arm64 && [[ $package == "parallels" ]]; then
         echo "Parallels installation is skipped for arm64 architecture"
     else
-        brew install --cask $package
+        if [[ $package == "parallels" ]]; then
+            # Workaround for https://github.com/github/hosted-runners-images/issues/886
+            CASK_NAME="parallels"
+            CASK_URL="https://raw.githubusercontent.com/Homebrew/homebrew-cask/adfc07a7bc28a32037851be4d7a0bd4f8b239565/Casks/p/${CASK_NAME}.rb"
+            
+            brew_install_pinned_cask "$CASK_NAME" "$CASK_URL"
+        else
+            brew install --cask $package
+        fi
     fi
 done
 
